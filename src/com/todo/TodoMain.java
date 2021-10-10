@@ -15,7 +15,6 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
-		TodoUtil.loadList(l, "todolist.txt");
 		Menu.displaymenu();
 		do {
 			Menu.prompt();
@@ -44,29 +43,24 @@ public class TodoMain {
 				break;
 
 			case "ls_name_asc":
-				l.sortByName();
-				System.out.println("이름순으로 정렬");
-				isList = true;
+				System.out.println("제목순으로 정렬하였습니다.");
+				TodoUtil.listAll(l, "title", 1);
 				break;
 
 			case "ls_name_desc":
-				l.sortByName();
-				l.reverseList();
-				System.out.println("이름 역순으로 정렬");
+				System.out.println("제목역순으로 정렬하였습니다.");
+				TodoUtil.listAll(l, "title", 0);
 				isList = true;
 				break;
 				
 			case "ls_date":
-				l.sortByDate();
-				System.out.println("생성순으로 정렬");
-				isList = true;
+				System.out.println("날짜순으로 정렬하였습니다.");
+				TodoUtil.listAll(l, "due_date", 1);
 				break;
 				
 			case "ls_date_desc":
-				l.sortByDate();
-				l.reverseList();
-				System.out.println("최신순으로 정렬");
-				isList = true;
+				System.out.println("날짜역순으로 정렬하였습니다.");
+				TodoUtil.listAll(l, "due_date", 0);
 				break;
 				
 			case "help":
@@ -74,13 +68,22 @@ public class TodoMain {
 				break;
 			
 			case "find":
-				String item_name = sc.next();
+				String item_name = sc.nextLine().trim();
 				TodoUtil.FindItem(l, item_name);
 				break;
 				
 			case "find_cate":
-				String item_nam = sc.next();
+				String item_nam = sc.nextLine().trim();
 				TodoUtil.FindCate(l, item_nam);
+				break;
+			
+			case "comp":
+				int comp = sc.nextInt();
+				TodoUtil.CompleteItem(l, comp);
+				break;
+				
+			case "ls_comp":
+				TodoUtil.ListComp(l);
 				break;
 
 			case "exit":
@@ -91,9 +94,6 @@ public class TodoMain {
 				System.out.println("정확한 명령어를 입력해주세요. (도움말 - help)");
 				break;
 			}
-			
-			if(isList) TodoUtil.listAll(l);
 		} while (!quit);
-		TodoUtil.saveList(l, "todolist.txt");
 	}
 }
