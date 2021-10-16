@@ -1,4 +1,4 @@
- package com.todo.menu;
+package com.todo.menu;
 public class Menu {
 
     public static void displaymenu()
@@ -16,9 +16,10 @@ public class Menu {
         System.out.println("9. 제목역순으로 정렬 -> ls_name_desc");
         System.out.println("10. 생성시간별로 정렬 -> ls_date");
         System.out.println("11. 생성시간별로 정렬 -> ls_date_desc");
-        System.out.println("12. 완료 체크 추가 -> comp + 번호");
+        System.out.println("12. 완료 체크 추가 -> comp");
         System.out.println("13. 완료 항목 출력 -> ls_comp");
-        System.out.println("14. 종료 -> exit");
+        System.out.println("14. 만기 시간 출력 -> due_time + 번호");
+        System.out.println("15. 종료 -> exit");
     }
 
 	public static void prompt() {

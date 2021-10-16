@@ -11,8 +11,10 @@ public class TodoItem {
     private String category;
     private String due_date;
     private int is_completed;
+    private String colleague;
+    private int priority;
     
-    public TodoItem(String category, String title, String memo, String due_date, int is_completed){
+    public TodoItem(String category, String title, String memo, String due_date, int is_completed, String colleague, int priority){
     	this.category=category;
         this.title=title;
         this.memo=memo;
@@ -20,16 +22,26 @@ public class TodoItem {
         this.current_date = f.format(new Date());
         this.due_date=due_date;
         this.is_completed=is_completed;
-    }
-    public TodoItem(String category, String title, String memo, String due_date){
-    	this.category=category;
-        this.title=title;
-        this.memo=memo;
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
-        this.current_date = f.format(new Date());
-        this.due_date=due_date;
+        this.colleague=colleague;
+        this.priority=priority;
     }
     
+	public String getColleague() {
+		return colleague;
+	}
+
+	public void setColleague(String colleague) {
+		this.colleague = colleague;
+	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
 	public int getIs_completed() {
 		return is_completed;
 	}
@@ -82,10 +94,34 @@ public class TodoItem {
 	}
 	@Override
 	public String toString() {
-		if(is_completed == 1)
-			return  id + "." + " [" + category  + "] "+ title + "[V]" + " - " + memo + " - " + due_date + " - " + current_date;
-		else
-			return  id + "." + " [" + category  + "] "+ title + " - " + memo + " - " + due_date + " - " + current_date;
+		if(is_completed == 1) {
+			if(priority < 1)
+				return  id + "." + "�١١١١�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 1)
+				return  id + "." + "�ڡ١١١�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 2)
+				return  id + "." + "�ڡڡ١١�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 3)
+				return  id + "." + "�ڡڡڡ١�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 4)
+				return  id + "." + "�ڡڡڡڡ�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else
+				return  id + "." + "�ڡڡڡڡ�" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+		}
+		else {
+			if(priority < 1)
+				return  id + "."  + "�١١١١�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 1)
+				return  id + "."  + "�ڡ١١١�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 2)
+				return  id + "."  + "�ڡڡ١١�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 3)
+				return  id + "."  + "�ڡڡڡ١�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else if(priority == 4)
+				return  id + "."  + "�ڡڡڡڡ�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+			else
+				return  id + "."  + "�ڡڡڡڡ�" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+		}
 	}
 
 }

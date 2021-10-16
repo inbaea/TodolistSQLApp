@@ -78,12 +78,16 @@ public class TodoMain {
 				break;
 			
 			case "comp":
-				int comp = sc.nextInt();
-				TodoUtil.CompleteItem(l, comp);
+				TodoUtil.CompleteItem(l);
 				break;
 				
 			case "ls_comp":
 				TodoUtil.ListComp(l);
+				break;
+			
+			case "due_time":
+				int time = sc.nextInt();
+				TodoUtil.DueTime(l, time);
 				break;
 
 			case "exit":
