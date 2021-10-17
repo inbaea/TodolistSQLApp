@@ -241,56 +241,57 @@ public class TodoUtil {
 			System.out.println("\n없는 번호를 입력하셨습니다!");
 			return;
 		}
-		
+
 		SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd/kk/mm");
-        String now_date = f.format(new Date());
-        String[] items = now_date.split("/");
-        String[] due_items = item_time.split("/");
+		String now_date = f.format(new Date());
+		String[] items = now_date.split("/");
+		String[] due_items = item_time.split("/");
 
-        int[] now_times = new int[5];
-        int[] due_times = new int[5];
+		int[] now_times = new int[5];
+		int[] due_times = new int[5];
 
-        for (int i = 0; i < 5; i++) {
-        	now_times[i] = Integer.parseInt(items[i]);
-        }
-        for (int i = 0; i < 5; i++) {
-        	if(i == 3 || i == 4) {
-        		due_times[i] = 0;
-        		continue;
-        	}
-        	due_times[i] = Integer.parseInt(due_items[i]);
-        }
-        due_times[2]++;
-        
-        if(now_times.length == due_times.length) {
-        	for(int a = now_times.length; a > 0; a--) {
-        		due_times[a-1] = due_times[a-1] - now_times[a-1];
-        	}
-        }
-        
-        if(due_times[4] < 0) {
-        	due_times[3]--;
-        	due_times[4] = due_times[4] + 60;
-        }
-        if(due_times[3] < 0) {
-        	due_times[2]--;
-        	due_times[3] = due_times[3] + 24;
-        }
-        if(due_times[2] < 0) {
-        	due_times[1]--;
-        	due_times[2] = due_times[2] + 31;
-        }
-        if(due_times[1] < 0) {
-        	due_times[0]--;
-        	due_times[1] = due_times[1] + 12;
-        }
-        if(due_times[0] < 0) {
-        	System.out.println("\n이미 기한이 지난 항목입니다!");
-        	return;
-        }
-        if(due_times[0] >= 0) {
-        	System.out.printf("\n[해당 항목의 마감기한이 %d년 %d월 %d일 %d시간 %d분 남았습니다.]\n", due_times[0], due_times[1], due_times[2], due_times[3], due_times[4]);
-        }
-        return;
+		for (int i = 0; i < 5; i++) {
+			now_times[i] = Integer.parseInt(items[i]);
+		}
+		for (int i = 0; i < 5; i++) {
+			if (i == 3 || i == 4) {
+				due_times[i] = 0;
+				continue;
+			}
+			due_times[i] = Integer.parseInt(due_items[i]);
+		}
+		due_times[2]++;
+
+		if (now_times.length == due_times.length) {
+			for (int a = now_times.length; a > 0; a--) {
+				due_times[a - 1] = due_times[a - 1] - now_times[a - 1];
+			}
+		}
+
+		if (due_times[4] < 0) {
+			due_times[3]--;
+			due_times[4] = due_times[4] + 60;
+		}
+		if (due_times[3] < 0) {
+			due_times[2]--;
+			due_times[3] = due_times[3] + 24;
+		}
+		if (due_times[2] < 0) {
+			due_times[1]--;
+			due_times[2] = due_times[2] + 31;
+		}
+		if (due_times[1] < 0) {
+			due_times[0]--;
+			due_times[1] = due_times[1] + 12;
+		}
+		if (due_times[0] < 0) {
+			System.out.println("\n이미 기한이 지난 항목입니다!");
+			return;
+		}
+		if (due_times[0] >= 0) {
+			System.out.printf("\n[해당 항목의 마감기한이 %d년 %d월 %d일 %d시간 %d분 남았습니다.]\n", due_times[0], due_times[1],
+					due_times[2], due_times[3], due_times[4]);
+		}
+		return;
 	}
 }

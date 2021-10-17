@@ -5,27 +5,28 @@ import java.util.Date;
 
 public class TodoItem {
 	private int id;
-    private String title;
-    private String memo;
-    private String current_date;
-    private String category;
-    private String due_date;
-    private int is_completed;
-    private String colleague;
-    private int priority;
-    
-    public TodoItem(String category, String title, String memo, String due_date, int is_completed, String colleague, int priority){
-    	this.category=category;
-        this.title=title;
-        this.memo=memo;
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
-        this.current_date = f.format(new Date());
-        this.due_date=due_date;
-        this.is_completed=is_completed;
-        this.colleague=colleague;
-        this.priority=priority;
-    }
-    
+	private String title;
+	private String memo;
+	private String current_date;
+	private String category;
+	private String due_date;
+	private int is_completed;
+	private String colleague;
+	private int priority;
+
+	public TodoItem(String category, String title, String memo, String due_date, int is_completed, String colleague,
+			int priority) {
+		this.category = category;
+		this.title = title;
+		this.memo = memo;
+		SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
+		this.current_date = f.format(new Date());
+		this.due_date = due_date;
+		this.is_completed = is_completed;
+		this.colleague = colleague;
+		this.priority = priority;
+	}
+
 	public String getColleague() {
 		return colleague;
 	}
@@ -53,75 +54,71 @@ public class TodoItem {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
-        return title;
-    }
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getMemo() {
-        return memo;
-    }
+	public String getMemo() {
+		return memo;
+	}
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
 
-    public String getCurrent_date() {
-        return current_date;
-    }
+	public String getCurrent_date() {
+		return current_date;
+	}
 
-    public void setCurrent_date(String current_date) {
-        this.current_date = current_date;
-    }
+	public void setCurrent_date(String current_date) {
+		this.current_date = current_date;
+	}
 
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	public String getDue_date() {
 		return due_date;
 	}
+
 	public void setDue_date(String due_date) {
 		this.due_date = due_date;
 	}
+
 	@Override
 	public String toString() {
-		if(is_completed == 1) {
-			if(priority < 1)
-				return  id + "." + "¡Ù¡Ù¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 1)
-				return  id + "." + "¡Ú¡Ù¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 2)
-				return  id + "." + "¡Ú¡Ú¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 3)
-				return  id + "." + "¡Ú¡Ú¡Ú¡Ù¡Ù" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 4)
-				return  id + "." + "¡Ú¡Ú¡Ú¡Ú¡Ù" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+		if (is_completed == 1)
+			return id + "." + addStar(priority) + " [" + category + "] " + title + "[V]" + " - " + colleague + " - "
+					+ memo + " - " + due_date + " - " + current_date;
+
+		return id + "." + addStar(priority) + " [" + category + "] " + title + " - " + colleague + " - " + memo + " - "
+				+ due_date + " - " + current_date;
+
+	}
+
+	private String addStar(int star_num) {
+		String star_string = "";
+		for (int i = 0; i < 5; i++) {
+			if (i < star_num)
+				star_string += "¡Ú";
 			else
-				return  id + "." + "¡Ú¡Ú¡Ú¡Ú¡Ú" + " [" + category  + "] "+ title + "[V]" + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
+				star_string += "¡Ù";
 		}
-		else {
-			if(priority < 1)
-				return  id + "."  + "¡Ù¡Ù¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 1)
-				return  id + "."  + "¡Ú¡Ù¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 2)
-				return  id + "."  + "¡Ú¡Ú¡Ù¡Ù¡Ù" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 3)
-				return  id + "."  + "¡Ú¡Ú¡Ú¡Ù¡Ù" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else if(priority == 4)
-				return  id + "."  + "¡Ú¡Ú¡Ú¡Ú¡Ù" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-			else
-				return  id + "."  + "¡Ú¡Ú¡Ú¡Ú¡Ú" + " [" + category  + "] "+ title + " - " + colleague + " - " + memo + " - " + due_date + " - " + current_date;
-		}
+		return star_string;
 	}
 
 }
